@@ -1,53 +1,40 @@
 # Sports Booking System
 
-## Introduction
-The Sports Booking System is a web application designed for booking sports facilities. Users can browse available sports venues, view schedules, and make reservations online.
+A full-stack sports-facility booking application built with Python and Flask.
+
+The project explores user management, facility discovery, scheduling, reservations, and administration in a practical web application.
 
 ## Features
-- **User Management:** Users can create accounts, log in, and manage their profiles.
-- **Facility Booking:** Browse and book facilities for various sports like tennis, basketball, football, etc.
-- **Schedule View:** Users can view the availability of the facilities in real-time.
-- **Admin Panel:** Admins can manage users, venues, and bookings.
+- User registration and authentication
+- Sports-facility browsing
+- Facility availability and schedule views
+- Online booking workflow
+- User profile management
+- Administrative management of users, facilities, and bookings
 
-## Technologies Used
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Python, Flask
-- **Database:** SQLite / PostgreSQL
-- **Version Control:** Git
+## Tech Stack
+- Python
+- Flask
+- HTML5
+- CSS3
+- JavaScript
+- SQLite / PostgreSQL
+- Git
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/manar09-code/Python-Project.git
-   cd Python-Project
-   ```
-2. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Set up the database:
-   ```bash
-   python setup_db.py
-   ```
-4. Run the application:
-   ```bash
-   python app.py
-   ```
+## Getting Started
+~~~bash
+git clone https://github.com/manar09-code/Python-Project.git
+cd Python-Project
+pip install -r requirements.txt
+~~~
 
-## Usage
-1. Open your web browser and navigate to `http://localhost:5000`.
-2. Sign up or log in to your account.
-3. Browse available facilities and make a booking.
+Set up the database according to the project's database script, then start the Flask application with setup_db.py and app.py.
 
-## Contribution
-Feel free to fork the repository and submit a pull request for any improvements or bug fixes.
+Open http://localhost:5000/.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Focus
+This project demonstrates Flask backend development, database integration, CRUD workflows, authentication, and a practical booking use case.
 
-## Contact
-For any inquiries, please contact the project maintainer at [your-email@example.com].
-
-## Acknowledgments
-- Inspired by various booking system designs.
-- Thanks to the contributors for their support and suggestions.
+## Author
+Manar Degachi
+GitHub: https://github.com/manar09-code
