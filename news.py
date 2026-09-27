@@ -23,7 +23,7 @@ def main():  # Define the main function to display the news and chatbot page
 
     # --- Titre de la page ---
     ctk.CTkLabel(fenetre, text="Actualités et Informations", font=("Arial", 28, "bold"),  # Create a title label for the page
-                 text_color="#1C9273").pack(pady=20)  # Pack the label with padding
+                 text_color="#133A5C").pack(pady=20)  # Pack the label with padding
 
     # --- Frame principal ---
     main_frame = Frame(fenetre, bg="#f2f2f2")  # Create the main frame to hold news and chatbot sections

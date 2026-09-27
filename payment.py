@@ -19,12 +19,12 @@ def main(reservation_info=None):
     fenetre = Tk()
     fenetre.title("Paiement - Système de Réservation Sportive")
     fenetre.state("zoomed")
-    fenetre.configure(bg="white")
+    fenetre.configure(bg="#F4F7FB")
     fenetre.bind("<Escape>", lambda e: fenetre.attributes("-fullscreen", False))
 
     # --- Background image ---
     try:
-        img_path = os.path.join(os.path.dirname(__file__), "payement.jpg")
+        img_path = os.path.join(os.path.dirname(__file__), "pictures", "image.jpg")
         bg_image = Image.open(img_path)
         bg_image = bg_image.resize((fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
         bg_photo = ImageTk.PhotoImage(bg_image)
@@ -35,20 +35,38 @@ def main(reservation_info=None):
         fenetre.configure(bg="white")
 
     # --- Retour Button ---
+    header = Frame(fenetre, bg="#133A5C", height=72)
+    header.pack(fill="x")
+    header.pack_propagate(False)
+
     ctk.CTkButton(
-        fenetre,
+        header,
         text="⟵ Retour",
         width=120,
-        height=40,
-        fg_color="#1C9273",
-        hover_color="#14625C",
-        font=("Arial", 14, "bold"),
+        height=36,
+        fg_color="#F77F00",
+        hover_color="#E57100",
+        font=("Arial", 13, "bold"),
         command=lambda: back_home(fenetre)
-    ).pack(anchor="nw", padx=20, pady=20)
+    ).pack(side=LEFT, padx=24)
+
+    ctk.CTkLabel(
+        header, text="PAIEMENT", text_color="white",
+        font=("Arial", 18, "bold")
+    ).pack(side=LEFT, padx=12)
+
+    ctk.CTkLabel(
+        fenetre, text="Choisissez une formule, puis sélectionnez votre mode de paiement",
+        text_color="#133A5C", font=("Arial", 11)
+    ).pack(anchor="w", padx=80, pady=(12, 0))
 
     # --- Résumé de la réservation ---
-    frame_summary = Frame(fenetre, bg="white")
-    frame_summary.pack(pady=20)
+    frame_summary = Frame(
+        fenetre, bg="white", width=760, height=180,
+        highlightbackground="#133A5C", highlightthickness=2
+    )
+    frame_summary.pack(pady=(28, 18))
+    frame_summary.pack_propagate(False)
 
     nom = reservation_info.get("nom", "Non spécifié")
     terrain = reservation_info.get("terrain", "Non spécifié")
@@ -69,15 +87,23 @@ def main(reservation_info=None):
     except:
         is_weekend = False
 
-    ctk.CTkLabel(frame_summary, text=summary_text, font=("Arial", 16), text_color="black").pack()
+    ctk.CTkLabel(
+        frame_summary, text=summary_text, font=("Arial", 15),
+        text_color="#133A5C", justify="left"
+    ).pack(anchor="center", expand=True)
 
     # --- Choix du plan ---
-    frame_plans = Frame(fenetre, bg="white")
-    frame_plans.pack(pady=20)
+    ctk.CTkLabel(
+        fenetre, text="Choisissez votre forfait", text_color="#133A5C",
+        font=("Arial", 18, "bold")
+    ).pack(pady=(4, 8))
+
+    frame_plans = Frame(fenetre, bg="#F4F7FB")
+    frame_plans.pack(pady=8)
 
     plans = [
         {"nom": "Forfait Standard", "prix": 10, "details": "1h de réservation, 2 joueurs inclus", "color": "#F77F00"},
-        {"nom": "Forfait Premium", "prix": 20, "details": "2h de réservation, 4 joueurs inclus", "color": "#1C9273"},
+        {"nom": "Forfait Premium", "prix": 20, "details": "2h de réservation, 4 joueurs inclus", "color": "#133A5C"},
         {"nom": "Forfait VIP", "prix": 30, "details": "3h de réservation, 6 joueurs inclus", "color": "#1F5061"}
     ]
 
@@ -88,21 +114,23 @@ def main(reservation_info=None):
         variable=abonnement_var,
         onvalue=1,
         offvalue=0,
-        font=("Arial", 12, "bold")
+        font=("Arial", 12, "bold"), text_color="#133A5C",
+        fg_color="#F77F00", hover_color="#E57100", border_color="#133A5C",
+        border_width=1
     ).pack(pady=10)
 
     for i, plan in enumerate(plans):
         ctk.CTkButton(
             frame_plans,
             text=f"{plan['nom']} - {plan['prix']*EURO_TO_TND:.2f} TND\n{plan['details']}",
-            width=350,
-            height=100,
+            width=260,
+            height=120,
             fg_color=plan["color"],
             hover_color="#E57100",
             font=("Arial", 14, "bold"),
             corner_radius=20,
             command=lambda p=plan: pay(fenetre, p, reservation_info, abonnement_var.get(), is_weekend)
-        ).grid(row=i, column=0, pady=15)
+        ).grid(row=i, column=0, padx=10, pady=8)
 
     fenetre.mainloop()
 
@@ -116,7 +144,7 @@ def pay(parent, plan, reservation_info, abonnement, is_weekend):
     pay_win = Toplevel(parent)
     pay_win.title("Paiement")
     pay_win.geometry("500x450")
-    pay_win.configure(bg="white")
+    pay_win.configure(bg="#F4F7FB")
     pay_win.grab_set()  # modal
     pay_win.transient(parent)  # focus on top
 
@@ -143,7 +171,14 @@ def pay(parent, plan, reservation_info, abonnement, is_weekend):
     if reductions:
         summary_text += "\n" + "\n".join(reductions)
 
-    ctk.CTkLabel(pay_win, text=summary_text, font=("Arial", 14), text_color="black").pack(pady=20, padx=20)
+    ctk.CTkLabel(
+        pay_win, text="Confirmation du paiement", font=("Arial", 18, "bold"),
+        text_color="#133A5C"
+    ).pack(pady=(20, 8))
+    ctk.CTkLabel(
+        pay_win, text=summary_text, font=("Arial", 14),
+        text_color="#133A5C", justify="left"
+    ).pack(pady=10, padx=20)
 
     frame_buttons = Frame(pay_win, bg="white")
     frame_buttons.pack(pady=10)
@@ -157,7 +192,7 @@ def pay(parent, plan, reservation_info, abonnement, is_weekend):
         ctk.CTkButton(
             pay_win,
             text="Confirmer Paiement",
-            fg_color="#1C9273",
+            fg_color="#133A5C",
             hover_color="#14625C",
             font=("Arial", 12, "bold"),
             width=200,
@@ -189,7 +224,7 @@ def pay(parent, plan, reservation_info, abonnement, is_weekend):
     ctk.CTkButton(
         frame_buttons,
         text="Payer par Carte Bancaire",
-        fg_color="#1C9273",
+        fg_color="#133A5C",
         hover_color="#14625C",
         font=("Arial", 12, "bold"),
         width=200,

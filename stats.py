@@ -37,7 +37,7 @@ def main():
 
     # --- Titre ---
     ctk.CTkLabel(fenetre, text="Statistiques des Réservations", font=("Arial", 28, "bold"),
-                 text_color="#1C9273").pack(pady=20)
+                 text_color="#133A5C").pack(pady=20)
 
     view_var = StringVar(value="matplotlib")
 
@@ -71,7 +71,7 @@ def main():
 
     # Update button
     ctk.CTkButton(frame_filters, text="Mettre à jour", width=80, height=30,
-                  fg_color="#1C9273", hover_color="#148F5F", font=("Arial", 10, "bold"),
+                  fg_color="#133A5C", hover_color="#F77F00", font=("Arial", 10, "bold"),
                   command=lambda: update_stats()).pack(side=LEFT, padx=10)
 
     # --- Frame pour stats ---
@@ -116,7 +116,7 @@ def main():
 
                 # Top days
                 day_counts = filtered_df['date'].dt.day_name().value_counts().head(5)
-                day_counts.plot(kind='bar', color="#1C9273", ax=ax2, edgecolor='black', linewidth=0.5)
+                day_counts.plot(kind='bar', color="#133A5C", ax=ax2, edgecolor='black', linewidth=0.5)
                 ax2.set_title("Jours les Plus Réservés", fontsize=14, fontweight='bold')
                 ax2.set_ylabel("Nombre de Réservations", fontsize=12)
                 ax2.set_xlabel("Jour", fontsize=12)

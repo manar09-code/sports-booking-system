@@ -1,6 +1,10 @@
 nom,date,heure,terrain,forfait,abonnement,equipment,coaching,user
-Manar,30/11/2025,08:00-10:00,Terrain de Basketball,Standard,1
-hi,30/11/2025,08:00-10:00,Terrain de Tennis,Standard,0
-eya,02/12/2025,08:00-10:00,Terrain de Basketball,Standard,1
+Manar,30/11/2025,08:00-10:00,Terrain de Basketball,Standard,1,,,
+hi,30/11/2025,08:00-10:00,Terrain de Tennis,Standard,0,,,
+eya,02/12/2025,08:00-10:00,Terrain de Basketball,Standard,1,,,
 eya,03/12/2025,08:00-10:00,Terrain de Basketball,Standard,0,1,1,
 manar,03/12/2025,08:00-10:00,Terrain de Basketball,Standard,1,1,1,manar
+Manar Degachi,02/10/2026,20:00-22:00,Terrain de Football,Standard,0,1,0,manardg09@gmail.com
+Manar Degachi,03/10/2026,20:00-22:00,Terrain de Football,Standard,0,0,0,manardg09@gmail.com
+Manar Degachi,28/09/2026,20:00-22:00,Terrain de Football,Standard,0,0,0,manardg09
+Manar Degachi,04/10/2026,20:00-22:00,Terrain de Padel,Premium,0,0,0,manardg09
